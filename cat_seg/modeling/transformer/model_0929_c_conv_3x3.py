@@ -745,12 +745,12 @@ class AggregatorLayer(nn.Module):
         # 修正後
         
         if self.last_block == False:
-            # x = torch.mean(x, dim=1, keepdim=True)
-            
-            B, C_, T, H, W = x.shape 
-            x = rearrange(x, "B C T H W -> (B T) C H W", B=B).contiguous()
-            x = self.c_conv(x)
-            x = rearrange(x, "(B T) C H W -> B C T H W", B=B).contiguous()
+            x = torch.mean(x, dim=1, keepdim=True)
+            # dbg(x=x)
+            # B, C_, T, H, W = x.shape 
+            # x = rearrange(x, "B C T H W -> (B T) C H W", B=B).contiguous()
+            # x = self.c_conv(x)
+            # x = rearrange(x, "(B T) C H W -> B C T H W", B=B).contiguous()
             
         # ----------------------
         return x

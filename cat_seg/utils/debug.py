@@ -81,7 +81,7 @@ def dbg(*, dims=None, **tensors):
             print(f"[L{lineno:4} {file}] {name:<15}: {tuple(t.shape)!s:<18}"
                   f"| {str(t.dtype).replace('torch.',''):<9}"
                   f"| {t.device} ")
-            print(t)
+            # print(t)
         else:
             # テンソルでない場合，変数名と中身をそのまま表示
             # print(f"[L{lineno:4}] {name} {np.shape(t)}: {t}")
