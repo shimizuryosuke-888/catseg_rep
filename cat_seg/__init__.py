@@ -17,3 +17,9 @@ from .data.dataset_mappers.mask_former_semantic_dataset_mapper import (
 # models
 from .cat_seg_model import CATSeg
 from .test_time_augmentation import SemanticSegmentorWithTTA
+
+# 4.2 initファイルに追加
+from .cat_seg_model_0909 import CATSeg_0909
+from .cat_seg_model_0910 import CATSeg_0910
+from .cat_seg_model_0911_Wrapper_review import CATSeg_0911_Wrapper_review
+from .cat_seg_model_0917_Transformer_review import CATSeg_0917_Transformer_review
