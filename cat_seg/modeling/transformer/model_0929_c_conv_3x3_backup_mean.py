@@ -599,7 +599,7 @@ class AggregatorLayer(nn.Module):
         # 修正後
         self.sam_prompts_conv = nn.Conv2d(self.k_pts*256, 256, kernel_size=1).to(self.device)
         # ----------
-        self.c_conv = nn.Conv2d(in_channels=hidden_dim, out_channels=1, kernel_size=3, padding=1, bias=True, padding_mode="replicate").to(self.device)
+        # self.c_conv = nn.Conv2d(in_channels=hidden_dim, out_channels=1, kernel_size=3, padding=1, bias=True).to(self.device)
 
     
     # 1.7 corr畳み込み処理のwrapper関数の追加
@@ -745,12 +745,12 @@ class AggregatorLayer(nn.Module):
         # 修正後
         
         if self.last_block == False:
-            # x = torch.mean(x, dim=1, keepdim=True)
+            x = torch.mean(x, dim=1, keepdim=True)
             # dbg(x=x)
             # B, C_, T, H, W = x.shape 
-            x = rearrange(x, "B C T H W -> (B T) C H W", B=B, T=T).contiguous()
-            x = self.c_conv(x)
-            x = rearrange(x, "(B T) C H W -> B C T H W", B=B, T=T).contiguous()
+            # x = rearrange(x, "B C T H W -> (B T) C H W", B=B).contiguous()
+            # x = self.c_conv(x)
+            # x = rearrange(x, "(B T) C H W -> B C T H W", B=B).contiguous()
             
         # ----------------------
         return x
