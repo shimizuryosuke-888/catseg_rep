@@ -582,7 +582,8 @@ class AggregatorLayer(nn.Module):
 
         # 7.2 AggregatorLayer initでのbuild_sam_block
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.sam_block = sam_block.build_sam_block().to(self.device)
+        # self.sam_block = sam_block.build_sam_block().to(self.device)
+        self.sam_block = sam_block.build_sam_block()
         self.sam_block.prompt_encoder.image_embedding_size = (24, 24)
         self.sam_block.input_image_size = (336, 336)
         self.sam_chunk = 128
@@ -592,12 +593,14 @@ class AggregatorLayer(nn.Module):
         # 修正前
         # self.conv1 = nn.Conv2d(prompt_channel, hidden_dim, kernel_size=7, stride=1, padding=3)
         # 修正後
-        self.conv1 = nn.Conv2d(prompt_channel, hidden_dim, kernel_size=1).to(self.device)
+        # self.conv1 = nn.Conv2d(prompt_channel, hidden_dim, kernel_size=1).to(self.device)
+        self.conv1 = nn.Conv2d(prompt_channel, hidden_dim, kernel_size=1)
         # ----------------------
 
         # 4.1.1_samblock_1x1conv_init
         # 修正後
-        self.sam_prompts_conv = nn.Conv2d(self.k_pts*256, 256, kernel_size=1).to(self.device)
+        # self.sam_prompts_conv = nn.Conv2d(self.k_pts*256, 256, kernel_size=1).to(self.device)
+        self.sam_prompts_conv = nn.Conv2d(self.k_pts*256, 256, kernel_size=1)
         # ----------
         self.c_conv = nn.Conv2d(in_channels=hidden_dim, out_channels=1, kernel_size=3, padding=1, bias=True, padding_mode="replicate")
 

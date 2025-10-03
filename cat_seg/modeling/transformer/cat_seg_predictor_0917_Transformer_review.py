@@ -20,7 +20,8 @@ from detectron2.layers import Conv2d
 # from .model_0911_Wrapper_review import Aggregator
 # from .model_0917_Transformer_review import Aggregator
 # from .model_0929c_conv_3x3 import Aggregator
-from .model_0929_c_conv_3x3 import Aggregator
+# from .model_0929_c_conv_3x3 import Aggregator
+from .model_0929_c_conv_3x3_device_delete import Aggregator
 # ----------------------------
 
 from cat_seg.third_party import clip
